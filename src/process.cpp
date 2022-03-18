@@ -28,30 +28,6 @@ float Process::CpuUtilization() {
     float totaltime_s = ((float)totalTime / (float)hertz);
 
     // apply simple delay filter on K1 values to avoid zeros in _dt values
-//    m_uptime_s_K1.emplace_back(proc_started);
-//    m_totaltime_s_K1.emplace_back(totaltime_s);
-//
-//    float up_dt;
-//    float tot_dt;
-//    if (m_uptime_s_K1.size() > 1) {
-//        up_dt = proc_started - m_uptime_s_K1[0];
-//        tot_dt = totaltime_s - m_totaltime_s_K1[0];
-//    } else {
-//        up_dt = proc_started;
-//        tot_dt = totaltime_s;
-//    }
-//    
-//
-//    if(m_uptime_s_K1.size() >= 5){
-//        m_uptime_s_K1.erase(m_uptime_s_K1.begin());
-//        m_totaltime_s_K1.erase(m_totaltime_s_K1.begin());
-//    }
-//
-//    // ensure to not divide by 0
-//    if (up_dt == 0) {    
-//        up_dt = 1;
-//    }
-//    float util = (tot_dt / up_dt);
     float util = (totaltime_s / proc_started);
     m_cpu = util; // store for faster accesses of comparision function
     return util;
